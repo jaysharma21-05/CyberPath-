@@ -21,6 +21,16 @@
             <h2>Create Account</h2>
             <p class="auth-subtitle">Join CyberPath Today</p>
 
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <p class="flash-msg {{ category }}">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+
+
             <form action="/register" method="POST">
                 <div class="form-group">
                     <label>Username</label>

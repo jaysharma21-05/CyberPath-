@@ -25,6 +25,12 @@
             <p class="error-msg">⚠️ {{ error }}</p>
             {% endif %}
 
+            {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+        <p class="flash-{{ category }}">{{ message }}</p>
+    {% endfor %}
+{% endwith %}
+
             <form action="/login" method="POST">
                 <div class="form-group">
                     <label>Username</label>

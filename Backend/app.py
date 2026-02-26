@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session,flash
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -31,12 +31,15 @@ def register():
 
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
-            return render_template('register.html', error="Username already exists!")
+            flash("Username already exists! Please choose a different one.", "error")
+            return redirect(url_for('register'))
 
         hashed_password = generate_password_hash(password)
         new_user = User(username=username, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
+        
+        flash("Registration successful! Please log in.", "success")
         return redirect(url_for('login'))
 
     return render_template('register.html')
@@ -51,9 +54,11 @@ def login():
 
         if user and check_password_hash(user.password, password):
             session['username'] = user.username
+            flash("Welcome back, " + user.username + "!", "success")
             return redirect(url_for('dashboard'))
         else:
-            return render_template('login.html', error="Invalid username or password!")
+            flash("Invalid username or password!", "error")
+            return redirect(url_for('login'))
 
     return render_template('login.html')  # ← Bahar hai if ke
 
