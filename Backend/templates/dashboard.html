@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — CyberPath</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo">CyberPath</div>
+        <ul class="nav-links">
+            <li><a href="/">HOME</a></li>
+            <li><a href="/logout">LOGOUT</a></li>
+        </ul>
+    </nav>
+
+    <div class="dashboard-container">
+        <h1>Welcome, {{ session['username'] }}! 🛡️</h1>
+        <p class="subtitle">Your Learning Progress</p>
+
+        <div class="courses-grid">
+
+            <div class="course-card">
+                <h3>🌐 Web Development</h3>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 60%">60%</div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <h3>🐍 Python Programming</h3>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 40%">40%</div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <h3>🔐 Cyber Security</h3>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 25%">25%</div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <h3>⚙️ C Programming</h3>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 10%">10%</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
